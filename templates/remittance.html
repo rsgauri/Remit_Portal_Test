@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remittance Advice</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>RDA Portal</h2>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/clients">Client Master</a>
+    <a href="/sources">Source Master</a>
+    <a href="/remittance">Remittance Advice</a>
+</div>
+
+<div class="content">
+    <h1>Remittance Advice</h1>
+
+    <button onclick="window.location.href='/upload'">Upload New Invoice</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Advice ID</th>
+                <th>Client ID</th>
+                <th>Invoice Number</th>
+                <th>Invoice Date</th>
+                <th>Total Amount</th>
+                <th>File</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if remittances %}
+                {% for r in remittances %}
+                <tr>
+                    <td>{{ r.id }}</td>
+                    <td>{{ r.client_id }}</td>
+                    <td>{{ r.invoice_no }}</td>
+                    <td>{{ r.invoice_date }}</td>
+                    <td>{{ r.invoice_amount }}</td>
+                    <td><a href="/download/{{ r.file_path }}">Download</a></td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6" style="text-align: center; padding: 20px;">
+                        No remittances yet. Upload an invoice to get started!
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

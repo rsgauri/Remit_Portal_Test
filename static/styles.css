@@ -1,0 +1,70 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f4f6f9;
+}
+
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #1f3c88;
+    position: fixed;
+    padding: 20px;
+    color: white;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+.sidebar a:hover {
+    background: #163172;
+}
+
+.content {
+    margin-left: 240px;
+    padding: 20px;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 200px;
+    text-align: center;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #1f3c88;
+    color: white;
+}
+
+button {
+    background: #1f3c88;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+}

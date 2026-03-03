@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Source Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>RDA Portal</h2>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/clients">Client Master</a>
+    <a href="/sources">Source Master</a>
+    <a href="/remittance">Remittance Advice</a>
+</div>
+
+<div class="content">
+    <h1>Source Master</h1>
+
+    <button onclick="window.location.href='/add_source'">Add Source</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Source ID</th>
+                <th>Client ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if sources %}
+                {% for s in sources %}
+                <tr>
+                    <td>{{ s.id }}</td>
+                    <td>{{ s.client_id }}</td>
+                    <td>{{ s.name }}</td>
+                    <td>{{ s.type }}</td>
+                    <td>{{ s.active }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5" style="text-align: center; padding: 20px;">
+                        No sources yet. Add a source to get started!
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

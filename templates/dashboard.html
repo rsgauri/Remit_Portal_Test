@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RDA Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>RDA Portal</h2>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/clients">Client Master</a>
+    <a href="/sources">Source Master</a>
+    <a href="/remittance">Remittance Advice</a>
+</div>
+
+<div class="content">
+    <h1>Dashboard</h1>
+
+    <div class="cards">
+        <div class="card">
+            <div>Total Clients</div>
+            <div style="font-size: 32px; margin-top: 10px; color: #1f3c88;">{{ client_count }}</div>
+        </div>
+        <div class="card">
+            <div>Total Sources</div>
+            <div style="font-size: 32px; margin-top: 10px; color: #1f3c88;">{{ source_count }}</div>
+        </div>
+        <div class="card">
+            <div>Remittance Count</div>
+            <div style="font-size: 32px; margin-top: 10px; color: #1f3c88;">{{ remittances|length }}</div>
+        </div>
+        <div class="card">
+            <div>Processed Today</div>
+            <div style="font-size: 32px; margin-top: 10px; color: #1f3c88;">{{ today_count }}</div>
+        </div>
+    </div>
+
+    <h2 style="margin-top: 30px;">Recent Remittances</h2>
+    <button onclick="window.location.href='/upload'">Upload New Invoice</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Invoice Number</th>
+                <th>Invoice Date</th>
+                <th>Amount</th>
+                <th>File</th>
+            </tr>
+            
+            
+        </thead>
+        <tbody>
+            {% if remittances %}
+                {% for r in remittances %}
+                <tr>
+                    <td>{{ r.id }}</td>
+                    <td>{{ r.invoice_no }}</td>
+                    <td>{{ r.invoice_date }}</td>
+                    <td>{{ r.invoice_amount }}</td>
+                    <td><a href="/download/{{ r.file_path }}">Download</a></td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5" style="text-align: center; padding: 20px;">
+                        No remittances yet. Upload an invoice to get started!
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
